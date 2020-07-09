@@ -47,21 +47,21 @@ function pageFullyLoaded(e) {
 /* window.onload = function(){} */
 
 function get_deleted_content(undelete_button) {
-    //console.log('running get_deleted_content...');
+    console.log('running get_deleted_content...');
     var id = undelete_button.parentElement.parentElement.parentElement.parentElement.id;
     requestURL = "https://api.pushshift.io/reddit/search/comment/?ids="+id;
     function reqListener () {
         response = this.response;
         try {
             if (response.data[0].body == '[deleted]') {
-                alert("DELETED TOO QUICKLY");
+                console.log("DELETED TOO QUICKLY");
             } else if (response.data[0].body == '[removed]') {
-                alert("REMOVED TOO QUICKLY");
+                console.log("REMOVED TOO QUICKLY");
             } else {
-                alert('Deleted comment:\n\n' + response.data[0].body);
+                console.log('Deleted comment:\n\n' + response.data[0].body);
             }
         } catch (e) {
-            alert("DELETED OR REMOVED TOO QUICKLY");
+            console.log("DELETED OR REMOVED TOO QUICKLY");
         }
     }
     var req = new XMLHttpRequest();
